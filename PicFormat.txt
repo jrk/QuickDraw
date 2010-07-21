@@ -1,0 +1,120 @@
+QUICKDRAW INTERNAL PICTURE FORMAT:
+
+
+OPCODE  NAME            ADDITIONAL PARAMS                       TOTAL BYTES
+
+00      nop             none                                    1
+01      clipRgn         region                                  1 + region
+02      bkPat           pattern                                 9
+03      txFont          font(word)                              3
+04      txFace          face(byte)                              2
+05      txMode          mode(word)                              3
+06      spExtra         extra(fixed Point)                      5
+07      pnSize          pnSize(point)                           5
+08      pnMode          mode(word)                              3
+09      pnPat           pattern                                 9
+0A      thePat          pattern                                 9
+0B      ovSize          point                                   5
+0C      origin          dh(word),dv(word)                       5
+0D      txSize          size(word)                              3
+0E      fgColor         color(long)                             4
+0F      bkColor         color(long)                             4
+
+10      txRatio         numer(pt), denom(pt)                    9
+11      picVersion      version(byte)                           2
+
+20      line            pnLoc(pt), newPt(pt)                    9
+21      line from       newPt(pt)                               5
+22      short line      pnLoc(pt), dh, dv(-128..127)            7
+23      short line from dh, dv(-128..127)                       3
+
+28      long text:      txLoc(pt), count(0..255), text          6 + text
+29      DH text:        dh(0..255), count(0..255), text         3 + text
+2A      DV text:        dv(0..255), count(0..255), text         3 + text
+2B      DHDV text:      dh,dv(0,..255), count(0..255), text     4 + text
+
+30      frameRect       rect                                    9
+31      paintRect       rect                                    9
+32      eraseRect       rect                                    9
+33      invertRect      rect                                    9
+34      fillRect        rect                                    9
+
+38      frameSameRect                                           1
+39      paintSameRect                                           1
+3A      eraseSameRect                                           1
+3B      invertSameRect                                          1
+3C      fillSameRect                                            1
+
+40      frameRRect      rect                                    9
+41      paintRRect      rect                                    9
+42      eraseRRect      rect                                    9
+43      invertRRect     rect                                    9
+44      fillRRect       rect                                    9
+
+48      frameSameRRect                                          1
+49      paintSameRRect                                          1
+4A      eraseSameRRect                                          1
+4B      invertSameRRect                                         1
+4C      fillSameRRect                                           1
+
+50      frameOval       rect                                    9
+51      paintOval       rect                                    9
+52      eraseOval       rect                                    9
+53      invertOval      rect                                    9
+54      fillOval        rect                                    9
+
+58      frameSameOval                                           1
+59      paintSameOval                                           1
+5A      eraseSameOval                                           1
+5B      invertSameOval                                          1
+5C      fillSameOval                                            1
+
+60      frameArc        rect                                    9
+61      paintArc        rect                                    9
+62      eraseArc        rect                                    9
+63      invertArc       rect                                    9
+64      fillArc         rect                                    9
+
+68      frameSameArc                                            1
+69      paintSameArc                                            1
+6A      eraseSameArc                                            1
+6B      invertSameArc                                           1
+6C      fillSameArc                                             1
+
+70      framePoly       poly                                    1 + poly
+71      paintPoly       poly                                    1 + poly
+72      erasePoly       poly                                    1 + poly
+73      invertPoly      poly                                    1 + poly
+74      fillPoly        poly                                    1 + poly
+
+78      frameSamePoly   (not implemented yet)
+79      paintSamePoly   (not implemented yet)
+7A      eraseSamePoly   (not implemented yet)
+7B      invertSamePoly  (not implemented yet)
+7C      fillSamePoly    (not implemented yet)
+
+80      frameRgn        rgn                                     1 + region
+81      paintRgn        rgn                                     1 + region
+82      eraseRgn        rgn                                     1 + region
+83      invertRgn       rgn                                     1 + region
+84      fillRgn         rgn                                     1 + region
+
+88      frameSameRgn    (not implemented yet)
+89      paintSameRgn    (not implemented yet)
+8A      eraseSameRgn    (not implemented yet)
+8B      invertSameRgn   (not implemented yet)
+8C      fillSameRgn     (not implemented yet)
+
+90      BitsRect        rowBytes, bounds, srcRect, dstRect, mode,
+                        byteCount, unpacked bitData
+91      BitsRgn         rowBytes, bounds, srcRect, dstRect, mode,
+                        maskRgn, byteCount, unpacked bitData
+98      PackBitsRect    rowBytes, bounds, srcRect, dstRect, mode
+                        byteCount, packed bitData
+99      PackBitsRgn     rowBytes, bounds, srcRect, dstRect, mode
+                        maskRgn, byteCount, packed bitData
+
+A0      shortComment    kind(word)                              3
+A1      longComment     kind(word) size(word) data              5 + data
+
+FF      endOfPicture
